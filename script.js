@@ -47,4 +47,48 @@ function playGame(){
     }
 } 
 
-playGame();
+const scissors = document.querySelector("#scissors");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+
+const results = document.createElement("div");
+results.classList.add("results");
+results.textContent = "Results will be displayed here.";
+document.body.appendChild(results);
+
+const score = document.createElement("div");
+score.classList.add("score");
+score.textContent = `Score: You ${humanScore} - Computer ${computerScore}`;
+document.body.appendChild(score);
+
+scissors.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    const result = playRound("scissors", computerChoice);
+    results.textContent = result;
+    score.textContent = `Score: You ${humanScore} - Computer ${computerScore}`;
+});
+rock.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    const result = playRound("rock", computerChoice);
+    results.textContent = result;
+    score.textContent = `Score: You ${humanScore} - Computer ${computerScore}`;
+});
+paper.addEventListener("click", () => {
+    const computerChoice = getComputerChoice();
+    const result = playRound("paper", computerChoice);
+    results.textContent = result;
+    score.textContent = `Score: You ${humanScore} - Computer ${computerScore}`;
+});
+
+if(humanScore >= 5 || computerScore >= 5) {
+    results.textContent = "Game Over!";
+    if (humanScore > computerScore) {
+        results.textContent += " You win!";
+    } else if (humanScore < computerScore) {
+        results.textContent += " You lose!";
+    } else {
+        results.textContent += " It's a tie!";
+    }
+}
+
+// playGame();
